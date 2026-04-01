@@ -3,8 +3,10 @@ from flask_cors import CORS
 import os
 import json
 import yt_dlp 
+import time
+import threading
 from download import download_audio, create_temps, delete_temp, getBaseTemp
-
+TEMP_LIFETIME = 60 * 15
 
 app = Flask(__name__)
 CORS(app)
@@ -84,6 +86,18 @@ def cleanup(folder_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
+def temp_death():    
+    while True:
+        BASE_TEMP_FOLDER = getBaseTemp()
+        now = time.time()
+        for folder in os.listdir(BASE_TEMP_FOLDER):
+            folder_path = os.path.join(BASE_TEMP_FOLDER, folder)
+            if os.path.isdir(folder_path):
+                creation_time = os.path.getctime(folder_path)
+                if now - creation_time > TEMP_LIFETIME:
+                    delete_temp(folder_path)
+        time.sleep(60)     
 
 if __name__ == '__main__':
+    threading.Thread(target=temp_death, daemon=True).start()
     app.run(debug=True, host='0.0.0.0', port=5000)
