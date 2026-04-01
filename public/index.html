@@ -7,7 +7,10 @@
   </head>
   <body>
     <form>
-      <div id="result"></div>
+      <div id="result">
+        <div id="download_link"></div>
+        <div id="preview_audio"></div>
+      </div>
       <div id="form_container">
         <input
           type="url"
@@ -19,67 +22,6 @@
       </div>
     </form>
 
-    <script>
-      const BASE_URL = "http://127.0.0.1:5000";
-      let mp3API = `${BASE_URL}/api/mp3`;
-      let data = null;
-
-      async function fetchMp3(url) {
-        api_url = mp3API;
-        try {
-          const response = await fetch(api_url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ url: url }),
-          });
-          data = await response.json();
-          console.log(data);
-        } catch (error) {
-          console.error("Error fetching MP3 URL:", error);
-          data = { error: `Error fetching MP3 URL: ${error.message}` };
-        }
-        if (data.error || !data.download) {
-          showError(data.error || "Unknown error occurred");
-          return;
-        }
-        const downloadUrl = BASE_URL + data.download;
-        showResult(downloadUrl, data.filename);
-      }
-
-      function showResult(link, filename) {
-        const resultDiv = document.getElementById("result");
-        const formContainer = document.getElementById("form_container");
-
-        formContainer.style.display = "none";
-
-        resultDiv.innerHTML = `<a href="${link}" download="${filename}">Download MP3</a>`;
-      }
-
-      function showError(message) {
-        const resultDiv = document.getElementById("result");
-        const formContainer = document.getElementById("form_container");
-        formContainer.style.display = "none";
-        resultDiv.innerHTML = `<p style="color: red;">${message}</p>`;
-      }
-
-      let form = document.querySelector("form");
-
-      form.addEventListener("submit", (e) => {
-        const formContainer = document.getElementById("form_container");
-        const resultDiv = document.getElementById("result");
-        e.preventDefault();
-        const url = document.getElementById("url_mp3").value.trim();
-
-        if (!url) {
-          showError("Please enter a valid YouTube URL");
-          return;
-        }
-        formContainer.style.display = "none";
-        resultDiv.innerHTML = `<p>Processing...</p>`;
-        fetchMp3(url);
-      });
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>

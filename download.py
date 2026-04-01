@@ -38,7 +38,6 @@ def download_audio(url):
             file_path = os.path.splitext(file_path)[0] + ".mp3"
 
     return file_path, temp_path
-    
 
 def delete_temp(path):
     if os.path.exists(path):
