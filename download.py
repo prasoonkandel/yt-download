@@ -6,6 +6,9 @@ import uuid
 BASE_TEMP_FOLDER = os.path.join(os.getcwd(), "temp")
 os.makedirs(BASE_TEMP_FOLDER, exist_ok=True)
 
+def getBaseTemp():
+    return BASE_TEMP_FOLDER
+
 def create_temps():
     rnd_hex = uuid.uuid4().hex
     folder_name = f"temp_{rnd_hex}"
@@ -19,8 +22,10 @@ def download_audio(url):
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': os.path.join(temp_path,'%(title)s.%(ext)s'),
+        'restrictfilenames': True,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
+
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
@@ -29,10 +34,13 @@ def download_audio(url):
         info = ydl.extract_info(url, download=True)
         file_path = ydl.prepare_filename(info)
 
+        if ydl_opts.get("postprocessors"):
+            file_path = os.path.splitext(file_path)[0] + ".mp3"
+
     return file_path, temp_path
     
 
-def delete_temp_folder(path):
+def delete_temp(path):
     if os.path.exists(path):
         shutil.rmtree(path)
 
