@@ -43,7 +43,7 @@ function showDownload(link, filename) {
 
   formContainer.style.display = "none";
 
-  downloadLink.innerHTML = `<a href="${link}" download="${filename}">Download MP3</a>`;
+  downloadLink.innerHTML = `<a href="${link}" download="${filename}"><i class="fa-solid fa-download"></i>&nbsp; Download MP3</a>`;
 }
 function showPreview(link, type) {
   const preview = document.getElementById("preview_audio");
@@ -56,7 +56,7 @@ function showError(message) {
   const downloadLink = document.getElementById("download_link");
   const formContainer = document.getElementById("form_container");
   formContainer.style.display = "none";
-  downloadLink.innerHTML = `<p style="color: red;">${message}</p>`;
+  downloadLink.innerHTML = `<div style="color: red;" id="error_message">${message}</div><div><button id="retry_button" onclick="location.reload()"><i class="fa-solid fa-arrow-rotate-right"></i>&nbsp;Try Again</button></div>`;
 }
 
 let form = document.querySelector("form");

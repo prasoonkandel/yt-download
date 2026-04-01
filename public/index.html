@@ -3,25 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>YouTube to MP3 Converter</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
-    <form>
-      <div id="result">
-        <div id="download_link"></div>
-        <div id="preview_audio"></div>
-      </div>
-      <div id="form_container">
-        <input
-          type="url"
-          name="url"
-          id="url_mp3"
-          placeholder="Enter YouTube URL"
-        />
-        <button type="submit">Convert to MP3</button>
-      </div>
-    </form>
+    <header>
+      <h1>YouTube to MP3</h1>
+    </header>
+    <main>
+      <div class="container">
+        <form>
+          <div id="form_container">
+            <input
+              type="url"
+              name="url"
+              id="url_mp3"
+              placeholder="Paste YouTube URL here..."
+              required
+            />
+            <button type="submit">Convert</button>
+          </div>
 
+          <div id="result">
+            <div id="download_link"></div>
+            <div id="preview_audio"></div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer>
+      <a href="https://prasoonkandel.com" target="_blank">
+        <p>
+          <i class="fa-solid fa-globe"></i>
+
+          Made by Prasoon Kandel
+        </p>
+      </a>
+    </footer>
     <script src="./script.js"></script>
   </body>
 </html>

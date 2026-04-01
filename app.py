@@ -34,7 +34,7 @@ def convert():
         return jsonify({"status":"success", "filename": filename, "folder_id": folder_id, "download": f"/api/mp3/download/{folder_id}/{filename}", "preview": f"/api/mp3/preview/{folder_id}/{filename}"}), 200
 
     except yt_dlp.utils.DownloadError as e:
-        return jsonify({"error": "Failed to download audio. Please check the URL and try again."}), 400
+        return jsonify({"error": "Failed to download audio. The URL might be invalid or the video is restricted."}), 400
     
     except Exception as e:
         return jsonify({"error": str(e)}), 400
