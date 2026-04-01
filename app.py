@@ -43,7 +43,7 @@ def download(folder_id, filename):
     file_path = os.path.join(temp_path, filename)
 
     if not os.path.exists(file_path):
-        return jsonify({"error": "Oops something went wrong"}),400
+        return jsonify({"error": "Oops file not found"}),404
 
     try:
         return send_file(file_path, as_attachment = True)    
@@ -51,6 +51,20 @@ def download(folder_id, filename):
     except Exception as e:
         return jsonify({"error":str(e)}),400    
 
+@app.route('/api/mp3/preview/<folder_id>/<filename>')
+def preview(folder_id, filename):
+    BASE_TEMP_FOLDER = getBaseTemp()
+    temp_path = os.path.join(BASE_TEMP_FOLDER, folder_id)
+    file_path = os.path.join(temp_path, filename)
+
+    if not os.path.exists(file_path):
+        return jsonify({"error": "Oops file not found"}), 404
+
+    try:
+        return send_file(file_path, as_attachment= False)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)},), 400
 
 
 if __name__ == '__main__':
