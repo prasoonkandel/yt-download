@@ -1,11 +1,12 @@
 from flask import Flask, render_template, jsonify, request, send_file
+from flask_cors import CORS
 import os
 import json
 import yt_dlp 
 from download import download_audio, create_temps, delete_temp, getBaseTemp
 
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/')
 def index():
     return jsonify({"message": "Hello, World!"}),200
@@ -46,7 +47,7 @@ def download(folder_id, filename):
         return jsonify({"error": "Oops file not found"}),404
 
     try:
-        return send_file(file_path, as_attachment = True)    
+        return send_file(file_path, as_attachment = True, mimetype="audio/mpeg")    
 
     except Exception as e:
         return jsonify({"error":str(e)}),400    
@@ -61,7 +62,7 @@ def preview(folder_id, filename):
         return jsonify({"error": "Oops file not found"}), 404
 
     try:
-        return send_file(file_path, as_attachment= False)
+        return send_file(file_path, as_attachment=False, mimetype="audio/mpeg")
     
     except Exception as e:
         return jsonify({"error": str(e)},), 400
