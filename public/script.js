@@ -1,4 +1,4 @@
-const BASE_URL = "https://yt-download-qbhe.onrender.com";
+const BASE_URL = "http://127.0.0.1:5000";
 let mp3API = `${BASE_URL}/api/mp3`;
 let data = null;
 
@@ -56,7 +56,12 @@ function showError(message) {
   const downloadLink = document.getElementById("download_link");
   const formContainer = document.getElementById("form_container");
   formContainer.style.display = "none";
-  downloadLink.innerHTML = `<div style="color: red;" id="error_message">${message}</div><div><button id="retry_button" onclick="location.reload()"><i class="fa-solid fa-arrow-rotate-right"></i>&nbsp;Try Again</button></div>`;
+  downloadLink.innerHTML = `<div id="error_message">
+    <span><i class="fa-solid fa-circle-exclamation"></i>&nbsp; ${message}</span>
+    <button type="button" id="retry_button" onclick="location.reload()">
+      <i class="fa-solid fa-arrow-rotate-right"></i>&nbsp; Try Again
+    </button>
+  </div>`;
 }
 
 let form = document.querySelector("form");

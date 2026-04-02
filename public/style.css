@@ -60,6 +60,12 @@ main {
   box-shadow: var(--hard-shadow);
 }
 
+@media (max-width: 600px) {
+  .container {
+    padding: 25px 15px;
+  }
+}
+
 .subtitle {
   color: var(--text-dim);
   margin-bottom: 30px;
@@ -69,9 +75,19 @@ main {
 #result {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  #form_container,
+  #result {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 input[type="url"] {
@@ -127,7 +143,7 @@ button:active,
   font-size: 16px;
   font-weight: bold;
   margin-top: 20px;
-  fmargin-bottom: 20px;
+  margin-bottom: 20px;
   box-shadow: 4px 4px 0px var(--border);
   display: flex;
   flex-direction: column;
@@ -143,9 +159,29 @@ button:active,
   background-color: #ffc914;
 }
 
+#preview_audio {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 #preview_audio audio {
   width: 100%;
-  margin-top: 20px;
+  max-width: 400px;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  button,
+  #download_link a {
+    width: 100%;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
 }
 
 @media (max-width: 600px) {
