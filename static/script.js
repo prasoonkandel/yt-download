@@ -1,11 +1,10 @@
-const BASE_URL = "http://127.0.0.1:5000";
-let mp3API = `${BASE_URL}/api/mp3`;
+const API_BASE = `/api/mp3`;
+const CLEANUP_BASE = `/api/cleanup`;
 let data = null;
 
 async function fetchMp3(url) {
-  api_url = mp3API;
   try {
-    const response = await fetch(api_url, {
+    const response = await fetch(API_BASE, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,8 +27,8 @@ async function fetchMp3(url) {
     return;
   }
 
-  const downloadUrl = BASE_URL + data.download;
-  const previewUrl = BASE_URL + data.preview;
+  const downloadUrl = data.download;
+  const previewUrl = data.preview;
 
   window.folder_id = data.folder_id;
 
@@ -84,7 +83,7 @@ form.addEventListener("submit", (e) => {
 window.addEventListener("beforeunload", () => {
   if (!window.folder_id) return;
 
-  const url = `${BASE_URL}/api/cleanup/${window.folder_id}`;
+  const url = `${CLEANUP_BASE}/${window.folder_id}`;
 
   navigator.sendBeacon(url);
 });

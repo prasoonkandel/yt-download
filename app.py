@@ -12,7 +12,11 @@ app = Flask(__name__)
 CORS(app)
 @app.route('/')
 def index():
-    return jsonify({"message": "Hello, World!"}),200
+    return render_template('index.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_file(os.path.join(app.root_path, 'templates', 'favicon.ico'))
 
 @app.route('/api/mp3', methods=['POST'])
 def convert():

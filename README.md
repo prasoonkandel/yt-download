@@ -16,7 +16,7 @@ locally to use the converter.
 ## Tech Stack
 
 - Backend: Python (`app.py`, `download.py`)
-- Frontend: HTML, CSS, JavaScript (`public/` directory)
+- Frontend: HTML templates in `templates/` and static assets in `static/`
 
 ## Installation & Setup
 
@@ -33,6 +33,8 @@ locally to use the converter.
    ```
 
 3. Open your web browser and navigate to the local server address provided in the terminal.
+
+The app is served by Flask, so the main page and assets should be opened through the local server.
 
 ## Usage
 
