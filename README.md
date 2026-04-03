@@ -2,6 +2,11 @@
 
 A web application to convert YouTube videos to MP3 audio files and download/preview them.
 
+## Notice
+
+YouTube connection may be blocked in some environments. Run this project
+locally to use the converter.
+
 ## Features
 
 - Convert YouTube videos into MP3 files.

@@ -71,6 +71,12 @@ main {
   margin-bottom: 30px;
 }
 
+.notice-banner {
+  color: #d60000;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
 #form_container,
 #result {
   display: flex;
