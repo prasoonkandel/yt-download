@@ -20,19 +20,48 @@ locally to use the converter.
 
 ## Installation & Setup
 
-1. Install the required Python dependencies:
+1. Install the FFmpeg binary (required):
+   - **Ubuntu/Debian**
+
+     ```bash
+     sudo apt update && sudo apt install -y ffmpeg
+     ```
+
+   - **Fedora**
+
+     ```bash
+     sudo dnf install -y ffmpeg
+     ```
+
+   - **Arch Linux**
+
+     ```bash
+     sudo pacman -S ffmpeg
+     ```
+
+   - **macOS (Homebrew)**
+
+     ```bash
+     brew install ffmpeg
+     ```
+
+   - **Windows**
+
+     Install FFmpeg from the official site and make sure `ffmpeg` is available in your system `PATH`.
+
+2. Install the required Python dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Start the application server:
+3. Start the application server:
 
    ```bash
    python app.py
    ```
 
-3. Open your web browser and navigate to the local server address provided in the terminal.
+4. Open your web browser and navigate to the local server address provided in the terminal.
 
 The app is served by Flask, so the main page and assets should be opened through the local server.
 
