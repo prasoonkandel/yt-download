@@ -5,12 +5,13 @@ A web application to convert YouTube videos to MP3 audio files and download/prev
 ## Notice
 
 YouTube connection may be blocked in some environments. Run this project
-locally to use the converter.
+locally to use the web application.
 
 ## Features
 
-- Convert YouTube videos into MP3 files.
-- In-browser audio preview before downloading.
+- Convert YouTube videos into MP3 audio files.
+- In-browser audio preview without downloading the file.
+- One Click easy download.
 - Simple, responsive web interface.
 
 ## Tech Stack
